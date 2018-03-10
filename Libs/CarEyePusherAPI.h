@@ -37,6 +37,8 @@ typedef enum __CarEye_Error__
 	CarEye_CreateFail = -4,
 	// 无效的输入参数
 	CarEye_InvalidParam = -5,
+	// 鉴权错误
+	CarEye_Auth = -6,
 }CarEyeError;
 
 // 推流器类型定义
@@ -51,6 +53,50 @@ typedef enum __PUSHER_TYPE__
 	// 推送本地文件RTMP流的推送器
 	Pusher_NativeFileRTMP,
 }CarEyePusherType;
+
+// 视频编码类型定义
+typedef enum __VIDEO_CODE_TYPE__
+{
+	// H264编码
+	CAREYE_VCODE_H264 = 0x1C,
+	// H265编码
+	CAREYE_VCODE_H265 = 0x48323635,
+	// MJPEG编码
+	CAREYE_VCODE_MJPEG = 0x08,
+	// MPEG4编码
+	CAREYE_VCODE_MPEG4 = 0x0D,
+}CarEye_VCodeType;
+
+// 音频编码类型定义
+typedef enum __AUDIO_CODE_TYPE__
+{
+	// AAC编码
+	CAREYE_ACODE_AAC = 0x15002,
+	// G711 Ulaw编码
+	CAREYE_ACODE_G711U = 0x10006,
+	// G711 Alaw编码
+	CAREYE_ACODE_G711A = 0x10007,
+	// G726编码
+	CAREYE_ACODE_G726 = 0x1100B,
+}CarEye_ACodeType;
+
+// 要推流的媒体信息结构体
+typedef struct __MEDIA_INFO_T
+{
+	// 视频编码类型
+	CarEye_VCodeType VideoCodec;
+	// 视频帧率, 一般为25
+	unsigned int VideoFps;
+
+	// 音频编码类型
+	CarEye_ACodeType AudioCodec;
+	// 音频采样率, 录制人声一般为8000
+	unsigned int AudioSamplerate;
+	// 音频通道数, 一般选择为1
+	unsigned int AudioChannel;
+	// 音频采样率, 采样精度
+	unsigned int AudioBitsPerSample;
+}CarEye_MediaInfo;
 
 // 视频帧类型定义
 typedef enum __VIDEO_FRAME_TYPE__
@@ -98,9 +144,10 @@ extern "C"
 	* Param svrip: 流媒体服务器IP地址或域名
 	* Param port: 流媒体服务器端口号
 	* Param name: 推流的sdp名
+	* Param mediaInfo: 要推流的媒体信息
 	* @Return int 大于等于0: 启动的推流通道号 小于0错误编号参考CarEyeError
 	*/
-	CE_API int CE_APICALL CarEye_StartRTSPPusher(char* svrip, unsigned short port, char* name);
+	CE_API int CE_APICALL CarEye_StartRTSPPusher(char* svrip, unsigned short port, char* name, CarEye_MediaInfo mediaInfo);
 
 	/*
 	* Comments: 关闭指定的RTSP推流通道
@@ -108,6 +155,13 @@ extern "C"
 	* @Return int 是否成功关闭, 状态码参考CarEyeError
 	*/
 	CE_API int CE_APICALL CarEye_StopRTSPPuser(int channel);
+
+	/*
+	* Comments: 获取当前通道的推流器是否已经连接到服务器并做好推流准备
+	* Param channel: 通道号
+	* @Return int 0未做好准备, 非0做好准备
+	*/
+	CE_API int CE_APICALL CarEye_PusherIsReady(int channel);
 
 	/*
 	* Comments: 启动RTSP推流本地文件通道 推流地址以三个参数进行组合: rtsp://svrip:port/name
