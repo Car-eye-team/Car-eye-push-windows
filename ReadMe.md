@@ -36,7 +36,7 @@ API 接口简单，方便快速移植到自己的系统中。
 	* Param channel: 已启动的RTSP推流通道号
 	* @Return int 是否成功关闭, 状态码参考CarEyeError
 	*/
-	CE_API int CE_APICALL CarEye_StopRTSPPuser(int channel);
+	CE_API int CE_APICALL CarEye_StopRTSPPusher(int channel);
 
 	/*
 	* Comments: 获取当前通道的推流器是否已经连接到服务器并做好推流准备
@@ -113,5 +113,7 @@ API 接口简单，方便快速移植到自己的系统中。
 * 推送H264流媒体数据到服务器
 * 多通道同时推送MP4文件以及H264流媒体数据到服务器
 
-car-eye车辆管理平台：www.car-eye.cn; car-eye开源平台网址：https://github.com/Car-eye-team  
+## 联系方式
+car-eye车辆管理平台：www.car-eye.cn;  
+car-eye开源平台网址：https://github.com/Car-eye-team  
 有关car-eye开源咨询可以加QQ群590411159。

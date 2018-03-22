@@ -1,12 +1,15 @@
 /*
- * CarEyePusherAPI.h
- *
- * Author: Wgj
- * Date: 2018-03-05 20:02
- *
- * CarEye推流库接口头文件
- * 实时推送数据时候支持最大8个通道的流
- */
+* Car eye 车辆管理平台: www.car-eye.cn
+* Car eye 开源网址: https://github.com/Car-eye-team
+* CarEyeRtmpAPI.h
+*
+* Author: Wgj
+* Date: 2018-03-19 19:11
+* Copyright 2018
+*
+* CarEye RTSP/RTMP推流库接口头文件
+* 实时推送数据时候支持最大8个通道的流
+*/
 
 #ifndef __CAREYE_PUSHER_H__
 #define __CAREYE_PUSHER_H__
@@ -19,7 +22,7 @@
 #define CE_APICALL 
 #endif
 
- // 目前最多支持8个通道同时推流
+// 目前最多支持8个通道同时推流
 #define MAX_CHN			8
 
 // 本接口库错误码定义
@@ -129,7 +132,7 @@ typedef struct __CAREYE_AV_Frame_T
 	unsigned char	*Buffer;
 	// 时间戳总秒数
 	unsigned int	Second;
-	// 时间戳秒数无法精确的微秒数, 非总微秒数, 与u32TimestampSec结合形成精确时间
+	// 时间戳秒数无法精确的微秒数, 非总微秒数, 与Second结合形成精确时间
 	unsigned int	USecond;
 }CarEye_AV_Frame;
 
@@ -202,7 +205,7 @@ extern "C"
 	* Param channel: 已启动的RTSP推流通道号
 	* @Return int 是否成功关闭, 状态码参考CarEyeError
 	*/
-	CE_API int CE_APICALL CarEye_StopRTSPPuser(int channel);
+	CE_API int CE_APICALL CarEye_StopRTSPPusher(int channel);
 
 	/*
 	* Comments: 获取当前通道的推流器是否已经连接到服务器并做好推流准备
