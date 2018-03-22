@@ -235,9 +235,10 @@ extern "C"
 	* Param svrip: 流媒体服务器IP地址或域名
 	* Param port: 流媒体服务器端口号
 	* Param name: 推流的通道名
+	* Param mediaInfo: 要推流的媒体信息
 	* @Return int 大于等于0: 启动的推流通道号 小于0错误编号参考CarEyeError
 	*/
-	CE_API int CE_APICALL CarEye_StartRTMPPusher(char* svrip, unsigned short port, char* name);
+	CE_API int CE_APICALL CarEye_StartRTMPPusher(char* svrip, unsigned short port, char* name, CarEye_MediaInfo mediaInfo);
 
 	/*
 	* Comments: 关闭指定的RTMP推流通道
