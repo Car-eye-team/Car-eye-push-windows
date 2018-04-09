@@ -42,6 +42,8 @@ typedef enum __CarEye_Error__
 	CAREYE_INVALID_PARAM = -5,
 	// 鉴权错误
 	CAREYE_AUTH = -6,
+	// 发送失败
+	CAREYE_SEND_FAILE = -7,
 }CarEyeError;
 
 // 推流器类型定义
