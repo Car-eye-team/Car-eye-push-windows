@@ -2,7 +2,7 @@
 car-eye-push 是car-eye团队开发的一个推流库，支持RTSP,RTMP推送，支持多通道推送数据，支持windows android，linux等多种系统，支持ARM,x86，x64和mips多种架构   
 API 接口简单，方便快速移植到自己的系统中。
 ### 接口说明：
-下面接口说明中的XXXX对应为RTSP或RTMP
+下面接口说明中的XXXX对应为RTSP或RTMP  
 	/*
 	* Comments: 使用有效的Key进行CarEye推流器的注册以便使用, 使用本系统前必须进行注册才能正常使用
 	* Param key: 有效的密钥
