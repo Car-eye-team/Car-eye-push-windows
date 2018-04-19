@@ -79,6 +79,11 @@ API 接口简单，方便快速移植到自己的系统中。
 * 推送H264流媒体数据到服务器
 * 多通道同时推送MP4文件以及H264流媒体数据到服务器
 
+推流后可以通过windows客户端，car-eye cms android或者IOS客户端进行观看
+windows客户端下载地址：https://github.com/Car-eye-team/Car-eye-player-windows  
+Car-eye-CMS 相关信息可以参考：https://github.com/Car-eye-team/Car-eye-CMS    
+
+
 # 联系我们
 
 car-eye 开源官方网址：www.car-eye.cn    
