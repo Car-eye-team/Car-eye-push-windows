@@ -1,6 +1,14 @@
 ## CarEyePusher推流库
 car-eye-push 是car-eye团队开发的一个推流库，支持RTSP,RTMP推送，支持多通道推送数据，支持windows android，linux等多种系统，支持ARM,x86，x64和mips多种架构   
 API 接口简单，方便快速移植到自己的系统中。
+
+## demo 功能   
+* 推送H264视频流   
+* 推送MP4文件，精确定位文件位置  
+* 叠加水印   
+* 推送数据过程断开重连   
+
+
 ### 接口说明：
 下面接口说明中的XXXX对应为RTSP或RTMP  
 
