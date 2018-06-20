@@ -51,7 +51,7 @@ extern "C"
 	* Comments: 启动RTMP推流通道
 	* Param svrip: 流媒体服务器IP地址或域名
 	* Param port: 流媒体服务器端口号
-	* Param name: 推流的通道名
+	* Param Name: 推流的通道名
 	* Param mediaInfo: 要推流的媒体信息
 	* @Return int 大于等于0: 启动的推流通道号 小于0错误编号参考CarEyeError
 	*/
@@ -68,7 +68,7 @@ extern "C"
 	* Comments: 启动RTMP推流本地文件通道
 	* Param svrip: 流媒体服务器IP地址或域名
 	* Param port: 流媒体服务器端口号
-	* Param name: 推流的通道名
+	* Param Name: 推流的通道名
 	* Param fileName: 要推流的本地文件路径 目前暂时支持MP4文件
 	* Param startMs: 推流起始的毫秒数
 	* Param endMs: 推流结束的毫秒数 endMs必须大于startMs, 否则推流失败, 当两个参数都为0时推送全文件

@@ -92,9 +92,9 @@ typedef struct __MEDIA_INFO_T
 	// 音频编码类型
 	CarEye_ACodeType AudioCodec;
 	// 音频采样率, 录制人声一般为8000
-	unsigned int AudioSamplerate;
+	unsigned int Samplerate;
 	// 音频通道数, 一般选择为1
-	unsigned int AudioChannel;
+	unsigned int Channels;
 	// 音频采样率, 采样精度
 	unsigned int AudioBitsPerSample;
 }CarEye_MediaInfo;
@@ -159,10 +159,10 @@ typedef enum __CAREYE_STATE_TYPE__
 * Comments: 推流器状态变化通知回调函数声明
 * Param channel: 推流器的通道号
 * Param state: 实时状态
-* Param type: 推流器类型
+* Param FrameType: 推流器类型
 * @Return int
 */
-typedef int(*CarEyePusher_StateChanged)(int channel, CarEyeStateType state, CarEyePusherType type);
+typedef int(*CarEyePusher_StateChanged)(int channel, CarEyeStateType state, CarEyePusherType FrameType);
 
 
 #endif
