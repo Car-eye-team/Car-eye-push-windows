@@ -164,5 +164,10 @@ typedef enum __CAREYE_STATE_TYPE__
 */
 typedef int(*CarEyePusher_StateChanged)(int channel, CarEyeStateType state, CarEyePusherType FrameType);
 
-
+/*
+* Comments: 直接推流器状态变更通知回调函数声明
+* Param : 
+* @Return void
+*/
+typedef int(*CarEyeRTMP_CallBack)(int Id, int frameType, char *pBuf, CarEyeStateType state, void *userPtr);
 #endif

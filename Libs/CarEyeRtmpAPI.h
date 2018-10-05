@@ -16,6 +16,9 @@
 
 #include "CarEyeTypes.h"
 
+// RTMP推流器句柄
+#define CarEyeRTMPHandle void*
+
 #ifdef __cplusplus
 extern "C"
 {
@@ -48,23 +51,6 @@ extern "C"
 	CE_API int CE_APICALL CarEyeRTMP_PusherIsReady(int channel);
 
 	/*
-	* Comments: 启动RTMP推流通道
-	* Param svrip: 流媒体服务器IP地址或域名
-	* Param port: 流媒体服务器端口号
-	* Param Name: 推流的通道名
-	* Param mediaInfo: 要推流的媒体信息
-	* @Return int 大于等于0: 启动的推流通道号 小于0错误编号参考CarEyeError
-	*/
-	CE_API int CE_APICALL CarEyeRTMP_StartPusher(char* svrip, unsigned short port, char* name, CarEye_MediaInfo mediaInfo);
-
-	/*
-	* Comments: 关闭指定的RTMP推流通道
-	* Param channel: 已启动的RTMP推流通道号
-	* @Return int 是否成功关闭, 状态码参考CarEyeError
-	*/
-	CE_API int CE_APICALL CarEyeRTMP_StopPusher(int channel);
-
-	/*
 	* Comments: 启动RTMP推流本地文件通道
 	* Param svrip: 流媒体服务器IP地址或域名
 	* Param port: 流媒体服务器端口号
@@ -77,6 +63,14 @@ extern "C"
 	CE_API int CE_APICALL CarEyeRTMP_StartNativeFile(char* svrip, unsigned short port, char* name, char* fileName, int startMs, int endMs);
 
 	/*
+	* Comments: 推送流媒体数据到指定通道中
+	* Param channel: 要推送的通道号
+	* Param frame: 要推送的帧数据
+	* @Return int 是否推送成功, 状态码参考CarEyeError
+	*/
+	CE_API int CE_APICALL CarEyeRTMP_PushNativeData(int channel, CarEye_AV_Frame* frame);
+
+	/*
 	* Comments: 关闭指定的本地文件RTMP推流通道
 	* Param channel: 已启动的RTMP推流通道号
 	* @Return int 是否成功关闭, 状态码参考CarEyeError
@@ -84,12 +78,49 @@ extern "C"
 	CE_API int CE_APICALL CarEyeRTMP_StopNativeFile(int channel);
 
 	/*
+	* Comments: 创建一个直接推流的推流器
+	* Param : None
+	* @Return 成功返回推流器句柄，失败返回NULL
+	*/
+	CE_API CarEyeRTMPHandle CE_APICALL CarEyeRTMP_Create(void);
+
+	/*
+	* Comments: 设置直推推流器的状态回调函数
+	* Param :
+	* @Return void
+	*/
+	CE_API int CE_APICALL CarEyeRTMP_SetCallback(CarEyeRTMPHandle handle, CarEyeRTMP_CallBack callback, void *userptr);
+
+	/*
+	* Comments: 启动RTMP推流通道
+	* Param handle: 创建成功的推流器句柄
+	* Param url: 推流链接
+	* Param mediaInfo: 要推流的媒体信息
+	* @Return int CAREYE_NOERROR: 连接成功 小于0错误编号参考CarEyeError
+	*/
+	CE_API int CE_APICALL CarEyeRTMP_Connect(CarEyeRTMPHandle handle, const char* url, CarEye_MediaInfo*  mediaInfo);
+
+	/*
+	* Comments: RTMP直推推流器是否已链接
+	* Param :
+	* @Return void
+	*/
+	CE_API int CE_APICALL CarEyeRTMP_IsConnected(CarEyeRTMPHandle handle);
+	
+	/*
+	* Comments: 关闭指定的RTMP推流通道
+	* Param channel: 已启动的RTMP推流通道号
+	* @Return int 是否成功关闭, 状态码参考CarEyeError
+	*/
+	CE_API int CE_APICALL CarEyeRTMP_Release(CarEyeRTMPHandle handle);
+
+	/*
 	* Comments: 推送流媒体数据到指定通道中
 	* Param channel: 要推送的通道号
 	* Param frame: 要推送的帧数据
 	* @Return int 是否推送成功, 状态码参考CarEyeError
 	*/
-	CE_API int CE_APICALL CarEyeRTMP_PushData(int channel, CarEye_AV_Frame* frame);
+	CE_API int CE_APICALL CarEyeRTMP_PushData(CarEyeRTMPHandle handle, CarEye_AV_Frame* frame);
 
 #ifdef __cplusplus
 }
